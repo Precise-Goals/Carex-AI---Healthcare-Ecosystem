@@ -53,7 +53,7 @@ export async function POST() {
         data: {
           email: userEmail,
           name: userName,
-          credit: 10,
+          // credit: 10,
         }
       });
 
