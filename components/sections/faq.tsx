@@ -30,12 +30,7 @@ export default function FAQ() {
           ))}
         </Accordion>
       </div>
-      <h4 className="mb-12 text-center text-sm font-medium tracking-tight text-foreground/80">
-        Still have questions? Email us at{" "}
-        <a href={`mailto:${siteConfig.links.email}`} className="underline">
-          {siteConfig.links.email}
-        </a>
-      </h4>
+      
     </Section>
   );
 }

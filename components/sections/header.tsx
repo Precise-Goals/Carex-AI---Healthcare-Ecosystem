@@ -64,6 +64,7 @@ export default function Header() {
 
         <div className="desktop-menu">
           <div className="menu-items">
+            <Link href={"/chatbot"} className="btn-outline">Chatbot</Link>
             <Link
               href={user ? "/dashboard" : "/sign-in"}
               className="btn-outline"

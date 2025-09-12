@@ -3,12 +3,12 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 
-// Graceful fallback with error boundary
+// Use the Next.js entrypoint to avoid Vercel export errors
 const SplineWithFallback = dynamic(
   () =>
-    import("@splinetool/react-spline")
+    import("@splinetool/react-spline/next") // <-- use the correct path
       .then((mod) => ({ default: mod.default || mod }))
-      .catch(() => ({ default: () => null })), // Return null component on import failure
+      .catch(() => ({ default: () => null })), // Return a null component on failure
   {
     ssr: false,
     loading: () => (
@@ -25,16 +25,9 @@ const SplineWithFallback = dynamic(
 const SplineRat: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const [splineAvailable, setSplineAvailable] = useState(true);
 
   useEffect(() => {
     setIsMounted(true);
-
-    // Check if Spline is available
-    import("@splinetool/react-spline").catch(() => {
-      setSplineAvailable(false);
-      setHasError(true);
-    });
   }, []);
 
   const handleLoad = () => {
@@ -46,7 +39,6 @@ const SplineRat: React.FC = () => {
     setHasError(true);
   };
 
-  // Don't render anything until mounted
   if (!isMounted) {
     return (
       <div className="relative w-full h-[400px] bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg flex items-center justify-center">
@@ -58,8 +50,7 @@ const SplineRat: React.FC = () => {
     );
   }
 
-  // Show error state if Spline fails to load or isn't available
-  if (hasError || !splineAvailable) {
+  if (hasError) {
     return (
       <div className="relative w-full h-[400px] bg-gradient-to-br from-red-50 to-pink-100 rounded-lg flex items-center justify-center">
         <div className="text-center">

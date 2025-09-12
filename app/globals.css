@@ -8,6 +8,7 @@
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
+  scroll-behavior: smooth;
   -ms-user-select: none;
   user-drag: none;
   /* stroke: none; */
@@ -16,6 +17,12 @@
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
+}
+hr{
+  display: none;
+}
+button{
+  cursor: pointer;
 }
 
 @font-face {
@@ -425,12 +432,12 @@ a.brand {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    gap: 1em;
+    gap: 0.35em;
 }
 
 span.cl-avatarBox.cl-userButtonAvatarBox.🔒️.cl-internal-14s4tiz {
   height: 100%;
-  width: 69%;
+  width: 100%;
 }
 .desktop-menu {
     display: flex;
@@ -620,4 +627,62 @@ a.items-center.justify-center.whitespace-nowrap.rounded-md.text-sm.font-medium.r
 a.items-center.justify-center.whitespace-nowrap.rounded-md.text-sm.font-medium.ring-offset-background.transition-colors.focus-visible\:outline-none.focus-visible\:ring-2.focus-visible\:ring-ring.focus-visible\:ring-offset-2.disabled\:pointer-events-none.disabled\:opacity-50.bg-primary.hover\:bg-primary\/90.h-10.px-4.py-2.w-full.sm\:w-auto.text-background.flex.gap-2.coolbtn:hover {
   background: red;
   color: white;
+}
+.flex.justify-between.items-center.dashboard {margin: 0% 10%;}
+
+.dashbox.flex.flex-col.items-center.justify-center.gap-5.mt-5.p-7.border-2.border-dashed.border-gray-200.rounded-2xl {
+    margin: 0 10%;
+    padding: 4% 0%;
+}footer.foote {
+    background: #ff000024;
+    color: black;
+}
+
+footer.foote p {
+    font-size: 24px;
+    text-align: center;
+    padding: 1% 16%;
+    padding-bottom: 4%;
+}
+
+h3.cpy {
+    text-align: center;
+}
+
+h4.mail {
+    text-align: center;
+}
+
+footer.foote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6% 2%;
+    flex-direction: column;
+}
+
+.foote h1 {
+  /* background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff); */
+    background-clip: text;
+    background-size: cover;
+    /* filter: hue-rotate(0) contrast(1.5); */
+    font-size: 14rem;
+}
+
+h4.mail {
+    margin: 1% 0 0.25% 0;
+}
+
+footer.foote {
+    border-radius: 20rem 20rem 0rem 0rem;
+}
+
+*::-webkit-scrollbar-button,*::-webkit-scrollbar-track,*::-webkit-scrollbar-thumb {
+  display: none;
+}
+.cl-rootBox.cl-userButton-root.🔒️.cl-internal-friqq3 {transform: scale(0.75);}.menu-items nav {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.35em;
 }

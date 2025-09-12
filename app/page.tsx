@@ -1,3 +1,5 @@
+// "use server"
+
 import CTA from "@/components/sections/cta";
 import FAQ from "@/components/sections/faq";
 import Features from "@/components/sections/features";
@@ -23,12 +25,12 @@ export default function Home() {
       <Problem />
       {/* <Solution /> */}
       <HowItWorks />
-      <Pricing />
+      {/* <Pricing /> */}
       <TestimonialsCarousel />
       {/* <Features /> */}
       <Testimonials />
       <FAQ />
-      <CTA />
+      {/* <CTA /> */}
       <Footer />
     </main>
   );

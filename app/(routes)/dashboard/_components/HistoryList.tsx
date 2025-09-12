@@ -11,7 +11,7 @@ function HistoryList() {
       {
         history.length == 0 ? (
           
-          <div className="flex flex-col items-center justify-center gap-5 mt-5 p-7 border-2 border-dashed border-gray-200 rounded-2xl">
+          <div className="dashbox flex flex-col items-center justify-center gap-5 mt-5 p-7 border-2 border-dashed border-gray-200 rounded-2xl">
             <Image
               src="/medical-assistance.png"
               alt="No consultations"

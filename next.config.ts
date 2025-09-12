@@ -8,31 +8,12 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
-  experimental: {
-    optimizeCss: true,
+
+  turbopack: {
   },
-  webpack: (
-    config: any,
-    { dev, isServer }: { dev: boolean; isServer: boolean }
-  ) => {
-    // Ensure splitChunks exists and is not false before modifying
-    if (
-      !dev &&
-      !isServer &&
-      config.optimization?.splitChunks &&
-      config.optimization.splitChunks !== false
-    ) {
-      const splitChunks = config.optimization.splitChunks;
-      if (typeof splitChunks === "object" && splitChunks.cacheGroups) {
-        splitChunks.cacheGroups.styles = {
-          name: "styles",
-          test: /\.(css|scss)$/,
-          chunks: "all",
-          enforce: true,
-        };
-      }
-    }
-    return config;
+
+  experimental: {
+    optimizeCss: true, // You can still keep this
   },
 };
 

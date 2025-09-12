@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "prisma generate && next build",
+    "build": "prisma generate && next build --turbopack",
     "start": "next start",
     "lint": "next lint"
   },
@@ -15,7 +15,7 @@
     "@splinetool/react-spline": "^4.1.0",
     "@tailwindcss/typography": "^0.5.16",
     "assemblyai": "^4.13.3",
-    "axios": "^1.10.0",
+    "axios": "^1.12.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
@@ -29,6 +29,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0",
+    "react-spline": "^1.2.1",
     "recharts": "^3.0.0",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",

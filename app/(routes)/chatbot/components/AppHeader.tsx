@@ -17,8 +17,8 @@ const menuItems = [
   },
   {
     id: 2,
-    label: "Chatbot",
-    href: "/chatbot",
+    label: "Dashboard",
+    href: "/dashboard",
   },
 ];
 
@@ -40,17 +40,6 @@ function AppHeader() {
     };
   }, []);
 
-  const Spline = dynamic(() => import("../SplineWrapper"), {
-    ssr: false,
-    loading: () => (
-      <div className="flex items-center justify-center h-full bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="text-center">
-          <div className="text-4xl mb-4">🎨</div>
-          <div className="text-gray-500">Loading 3D Scene...</div>
-        </div>
-      </div>
-    ),
-  });
 
   return (
     <header className={`navbar ${addBorder ? "with-border" : ""}`}>
