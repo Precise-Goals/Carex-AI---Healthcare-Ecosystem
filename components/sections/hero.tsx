@@ -111,7 +111,7 @@ function HeroCTA() {
           href={user ? "/dashboard" : "/signin"}
           className={cn(
             buttonVariants({ variant: "default" }),
-            "w-full sm:w-auto text-background flex gap-2 coolbtn"
+            "safas  w-full sm:w-auto text-background flex gap-2 coolbtn"
           )}
         >
           <Icons.logo className="h-6 w-6" />

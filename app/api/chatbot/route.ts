@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
     // Add healthcare-focused system prompt
     const systemPrompt = {
       role: "system",
-      content: `You also understand the hinglish and marathi-english language and respond in same language, also if any regional language is used with english, preferred to respond in that language apart from english 
+      content: `You also understand the hinglish and marathi-english language and respond in same language but in regional language. 
       You are a helpful AI assistant with knowledge about health and wellness. You can discuss general health topics, provide health information, and answer questions about wellness. 
 
 IMPORTANT:

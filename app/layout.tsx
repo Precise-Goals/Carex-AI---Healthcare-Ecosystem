@@ -1,6 +1,7 @@
 import { type Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 
+// import "./index.css";
 import "./globals.css";
 import Provider from "./provider";
 

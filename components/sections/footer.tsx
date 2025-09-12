@@ -1,3 +1,5 @@
+"use client";
+
 import { Icons } from "@/components/icons";
 import { siteConfig } from "@/lib/config";
 import Link from "next/link";
@@ -5,22 +7,38 @@ import { FaTwitter, FaLinkedin, FaGithub, FaCode } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 
 export default function Footer() {
+  const handleClick = (): void => {
+    window.location.href = "/";
+  };
   return (
     <footer className="foote">
-      <h1 className="hed">CAREX</h1>
-      <p>
-        CareX is an AI-powered doctor platform designed to make healthcare
-        accessible, secure, and multilingual. It combines AI-trained MBBS
-        models, doctor consultations, blockchain security, and e-pharmacy
-        integration to provide end-to-end healthcare support.
-      </p>
-      <h4 className="mail">
-        Still have questions? Email us at{" "}
-        <a href={`mailto:${siteConfig.links.email}`} className="underline">
-          {siteConfig.links.email}
-        </a>
-      </h4>
-      <h3 className="cpy">Made by Falcons - All Rights Reserved 2025</h3>
+      <div className="r1">
+        <p>Heard Enough?</p>
+        <h1>Consult Now</h1>
+        <button onClick={handleClick} className="but">
+          <img src="right.svg" alt="Home" />
+        </button>
+      </div>
+
+      <div className="r2">
+        {" "}
+        <h1 className="hed">CAREX</h1>
+        <p>
+          CareX is an AI-powered doctor platform designed to make healthcare
+          accessible, secure, and multilingual. It combines AI-trained MBBS
+          models, doctor consultations, blockchain security, and e-pharmacy
+          integration to provide end-to-end healthcare support.
+        </p>
+        <h4 className="mail">
+          Still have questions? Email us at{" "}
+          <a href={`mailto:${siteConfig.links.email}`} className="underline">
+            {siteConfig.links.email}
+          </a>
+        </h4>
+      </div>
+      <div className="cpydsv">
+        <h3 className="cpy">Made by Falcons - All Rights Reserved 2025</h3>
+      </div>
     </footer>
 
     // <footer className="border-t mt-20 py-10">

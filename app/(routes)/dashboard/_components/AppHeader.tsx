@@ -79,9 +79,9 @@ function AppHeader() {
           </div>
         </div>
 
-        <div className="mt-2 cursor-pointer block lg:hidden">
+        {/* <div className="mt-2 cursor-pointer block lg:hidden">
           <Drawer />
-        </div>
+        </div> */}
       </div>
       <hr
         className={cn(

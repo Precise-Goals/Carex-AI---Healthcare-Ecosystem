@@ -95,7 +95,7 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({
         ) : (
           <div className="threads">
             {threads.map((thread) => (
-              <>
+              <div className="thrdwrp" key={thread.id}>
                 <div
                   key={thread.id}
                   className={`thrd ${
@@ -176,7 +176,7 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({
                   )}
                 </div>
                 <hr className="showthre" />
-              </>
+              </div>
             ))}
           </div>
         )}
