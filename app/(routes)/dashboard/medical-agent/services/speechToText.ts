@@ -1,5 +1,3 @@
-"use client"
-
 /**
  * Converts audio blob to text using our API endpoint
  */

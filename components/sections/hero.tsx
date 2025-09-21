@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import SplineRat from "./SplineRat";
-import Home from "./SplineRat";
+import SplineRatWith3D from "./SplineRatWith3D";
 
 function HeroTitles() {
   return (
@@ -148,8 +148,7 @@ export default function Hero2() {
         {/* <HeroPill /> */}
         {/* <HeroTitles /> */}
 
-        {/* <SplineRat /> */}
-        <Home/>
+        <SplineRatWith3D />
         <HeroCTA />
         <HeroImage />
         <div className="herodvs"></div>

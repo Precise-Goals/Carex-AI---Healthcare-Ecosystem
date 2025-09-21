@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "../../../lib/generated/prisma";
+import prisma from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
-
-declare global {
-  var prisma: PrismaClient | undefined;
-}
 
 // Fallback response generator
 const generateFallbackResponse = (userMessage: string): string => {
@@ -19,17 +15,6 @@ const generateFallbackResponse = (userMessage: string): string => {
     Math.floor(Math.random() * fallbackResponses.length)
   ];
 };
-
-let prisma: PrismaClient;
-
-if (process.env.NODE_ENV === "production") {
-  prisma = new PrismaClient();
-} else {
-  if (!global.prisma) {
-    global.prisma = new PrismaClient();
-  }
-  prisma = global.prisma;
-}
 
 export async function POST(request: NextRequest) {
   try {
