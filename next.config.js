@@ -7,14 +7,6 @@ const nextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
     ],
   },
-
-  turbopack:{
-
-  },
-
-  experimental: {
-    optimizeCss: true,
-  },
 };
 
 module.exports = nextConfig;
