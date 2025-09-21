@@ -200,6 +200,7 @@ carex-ai/
    CLERK_SECRET_KEY=your_clerk_secret_key
 
    # AI Services
+   GOOGLE_API_KEY=your_google_api_key_here
    OPEN_ROUTER_API_KEY=your_openrouter_api_key
    NEXT_PUBLIC_ASSEMBLYAI_API_KEY=your_assemblyai_api_key
    MURF_API_KEY=your_murf_api_key

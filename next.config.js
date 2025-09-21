@@ -1,6 +1,5 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
     remotePatterns: [
       { protocol: "http", hostname: "localhost" },
@@ -9,12 +8,13 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  turbopack: {
+  turbopack:{
+
   },
 
   experimental: {
-    optimizeCss: true, // You can still keep this
+    optimizeCss: true,
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

@@ -6,6 +6,20 @@ declare global {
   var prisma: PrismaClient | undefined;
 }
 
+// Fallback response generator
+const generateFallbackResponse = (userMessage: string): string => {
+  const fallbackResponses = [
+    "I'm sorry, I'm having trouble connecting to my knowledge base right now. Could you please repeat your question?",
+    "I apologize, but I'm experiencing some technical difficulties. Could we try again in a moment?",
+    "I seem to be having trouble processing your request. Could you rephrase your question?",
+    "I apologize for the inconvenience, but I'm currently unable to access my medical knowledge database. Please try again shortly.",
+  ];
+
+  return fallbackResponses[
+    Math.floor(Math.random() * fallbackResponses.length)
+  ];
+};
+
 let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === "production") {
@@ -94,44 +108,80 @@ Keep responses concise, conversational and helpful.`,
     // Insert system prompt at the beginning
     conversationHistory.unshift(systemPrompt);
 
-    // Call Together API
-    const togetherApiKey = process.env.TOGETHER_API;
-    if (!togetherApiKey) {
+    // Call Gemini API using direct URL method (similar to demo.js)
+    const googleApiKey = process.env.GOOGLE_API_KEY;
+    if (!googleApiKey) {
       return NextResponse.json(
-        { error: "Together API key not configured" },
+        { error: "Google API key not configured" },
         { status: 500 }
       );
     }
 
-    const response = await fetch(
-      "https://api.together.xyz/v1/chat/completions",
-      {
+    const API = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${googleApiKey}`;
+
+    // Build the full prompt with system instruction and conversation history
+    const systemInstruction = conversationHistory
+      .filter((msg) => msg.role === "system")
+      .map((msg) => msg.content)
+      .join("\n\n");
+
+    const conversationText = conversationHistory
+      .filter((msg) => msg.role !== "system")
+      .map(
+        (msg) => `${msg.role === "user" ? "User" : "Assistant"}: ${msg.content}`
+      )
+      .join("\n\n");
+
+    const fullPrompt = `${systemInstruction}\n\nConversation:\n${conversationText}`;
+
+    let assistantResponse: string;
+    try {
+      const response = await fetch(API, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${togetherApiKey}`,
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: "meta-llama/Llama-3.3-70B-Instruct-Turbo",
-          messages: conversationHistory,
-          temperature: 0.3, // Lower temperature for more consistent medical responses
-          max_tokens: 1500, // Increased for more detailed medical explanations
+          contents: [{ parts: [{ text: fullPrompt.trim() }] }],
+          safetySettings: [
+            {
+              category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+              threshold: "BLOCK_MEDIUM_AND_ABOVE",
+            },
+            {
+              category: "HARM_CATEGORY_HARASSMENT",
+              threshold: "BLOCK_MEDIUM_AND_ABOVE",
+            },
+            {
+              category: "HARM_CATEGORY_HATE_SPEECH",
+              threshold: "BLOCK_MEDIUM_AND_ABOVE",
+            },
+            {
+              category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+              threshold: "BLOCK_MEDIUM_AND_ABOVE",
+            },
+          ],
+          generationConfig: {
+            temperature: 0.3,
+            topK: 40,
+            topP: 0.8,
+            maxOutputTokens: 1500,
+          },
         }),
+      });
+
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error?.message || "Failed to generate response");
       }
-    );
 
-    if (!response.ok) {
-      const errorData = await response.text();
-      throw new Error(`Together API Error: ${response.status} - ${errorData}`);
+      const data = await response.json();
+      assistantResponse =
+        data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+        "I'm sorry, I couldn't generate a response.";
+    } catch (error) {
+      console.error("Error calling Gemini API:", error);
+      // Use fallback response if Gemini API fails
+      assistantResponse = generateFallbackResponse(message);
     }
-
-    const data = await response.json();
-
-    if (!data.choices || !data.choices[0]?.message?.content) {
-      throw new Error("Invalid response format from Together API");
-    }
-
-    const assistantResponse = data.choices[0].message.content;
 
     // Save assistant message to database
     const assistantMessage = await prisma.chatMessage.create({
