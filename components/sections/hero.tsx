@@ -11,6 +11,7 @@ import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import SplineRat from "./SplineRat";
 import SplineRatWith3D from "./SplineRatWith3D";
+import Spline from "@splinetool/react-spline";
 
 function HeroTitles() {
   return (
@@ -148,7 +149,8 @@ export default function Hero2() {
         {/* <HeroPill /> */}
         {/* <HeroTitles /> */}
 
-        <SplineRatWith3D />
+        {/* <SplineRatWith3D /> */}
+        <Spline scene="/carex.splinecode" />
         <HeroCTA />
         <HeroImage />
         <div className="herodvs"></div>
