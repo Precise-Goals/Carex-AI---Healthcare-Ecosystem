@@ -85,7 +85,7 @@ function AddNewSession({ isOpen, onOpenChange, preSelectedDoctor }: AddNewSessio
           <DialogTitle>{suggestedDocter ? 'Recommended Specialist' : 'Start Consultation'}</DialogTitle>
           <DialogDescription asChild>
             {!suggestedDocter ? (
-              <div className="flex flex-col gap-2">
+              <div className="dcn flex flex-col gap-2">
                 <h2 className="text-lg font-bold">Add Symptoms or Any Other Details</h2>
                 <Textarea
                   placeholder="Enter your symptoms or any other details"
@@ -97,16 +97,16 @@ function AddNewSession({ isOpen, onOpenChange, preSelectedDoctor }: AddNewSessio
               </div>
             ) : (
               <div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mt-5">
+                <div className="std grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mt-5">
                   <div className="flex flex-col gap-2">
                     <h2 className="text-lg font-bold">Select the doctor</h2>
-                    <div className={`border-2 border-gray-200 rounded-2xl hover:border-primary/40 p-4 cursor-pointer ${selectedDoctor ? "border-primary" : ""} flex flex-col items-center justify-center text-center`} onClick={() => setSelectedDoctor(suggestedDocter)}>
+                    <div  className={`stdsa border-2 border-gray-200 rounded-2xl hover:border-primary/40 p-4 cursor-pointer ${selectedDoctor ? "border-primary" : ""} flex flex-col items-center justify-center text-center`} onClick={() => setSelectedDoctor(suggestedDocter)}>
                       <Image
                         src={suggestedDocter.image}
                         alt={suggestedDocter.specialist || "Doctor"}
-                        width={70}
-                        height={70}
-                        className='rounded-full w-[50px] h-[50px] object-cover'
+                        width={1000}
+                        height={1000}
+                        className='rounded-full object-cover'
                         onError={(e) => {
                     
                           const target = e.target as HTMLImageElement;
@@ -126,14 +126,14 @@ function AddNewSession({ isOpen, onOpenChange, preSelectedDoctor }: AddNewSessio
         </DialogHeader>
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline" className="bg-gray-900 text-white mt-2">
+            <Button variant="outline" className="dfc bg-gray-900 text-white mt-2">
               Cancel
             </Button>
           </DialogClose>
           {!suggestedDocter ? (
             <Button
               variant="outline"
-              className="bg-primary text-white mt-2 flex items-center gap-2"
+              className="dfn bg-primary text-white mt-2 flex items-center gap-2"
               disabled={!note || isLoading}
               onClick={OnClickNext}
             >
@@ -142,7 +142,7 @@ function AddNewSession({ isOpen, onOpenChange, preSelectedDoctor }: AddNewSessio
           ) : (
             <Button
               disabled={isLoading}
-              className="bg-primary text-white mt-2 flex items-center gap-2"
+              className="dsac bg-primary text-white mt-2 flex items-center gap-2"
               onClick={() => handleStartConsultation()}
             >
               Choose Doctor {isLoading ? <Loader2 className="animate-spin" /> : <IoArrowForward />}

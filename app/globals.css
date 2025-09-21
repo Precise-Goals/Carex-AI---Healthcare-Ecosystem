@@ -766,3 +766,78 @@ footer.foote {
 .cpydsv {
     border-radius: 5rem 5rem 0rem 0rem;
 } */
+ .Herodv{
+  min-height: 50rem;
+ }
+ .scensade {
+  height: 83vh;
+}
+
+.dc {
+  border-radius: 5rem;
+  padding: 3.7% 4% 5% 5%;
+  display: flex;
+  align-items: flex-end;
+  max-width: 100vw;
+  width: 75%;
+  justify-content: center;
+  border: none;
+  box-shadow: 6px -13px 0rem 0.5rem #646363 inset;
+  flex-direction: row;
+}
+
+.dc h2 {
+  font-size: 3.85rem;
+}
+
+.dcn h2 {
+  font-size: 1.5rem;
+  margin: 0% 1% 4% 0;
+}
+
+.dcn textarea {
+  resize: none;
+  border-radius: 2rem;
+  padding: 3%;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.df {
+  display: flex;
+  flex-direction: column;
+  width: 24%;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  gap: 0;
+}
+
+.df button {
+  padding: 21% 25%;
+  border-radius: 5rem;
+  cursor: pointer;
+  font-size: 1.65rem;
+}.std h2 {
+  font-size: 1.5rem;
+}
+
+.std {
+  display: flex;
+  flex-direction: column;
+  align-items:stretch;
+}
+
+.stdsa {
+  border-radius: 3rem;
+  padding: 5em 4em;
+  margin-top: 7%;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+.stdsa img {
+  width: 230px;
+  height: 160px;
+  border-radius: 3rem;
+  margin: 0 4em;
+}

@@ -94,8 +94,7 @@ function HeroCTA() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.0, duration: 0.8 }}
-        >
-        </motion.p>
+        ></motion.p>
       </>
     );
   }
@@ -145,16 +144,18 @@ function HeroImage() {
 export default function Hero2() {
   return (
     // <section id="hero">
-      <div className="Herodv position-relative">
-        {/* <HeroPill /> */}
-        {/* <HeroTitles /> */}
+    <div className="Herodv position-relative">
+      {/* <HeroPill /> */}
+      {/* <HeroTitles /> */}
 
-        {/* <SplineRatWith3D /> */}
+      {/* <SplineRatWith3D /> */}
+      <div className="scensade">
         <Spline scene="/carex.splinecode" />
-        <HeroCTA />
-        <HeroImage />
-        <div className="herodvs"></div>
       </div>
+      <HeroCTA />
+      <HeroImage />
+      <div className="herodvs"></div>
+    </div>
     // </section>
   );
 }
