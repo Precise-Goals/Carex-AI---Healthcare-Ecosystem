@@ -20,6 +20,11 @@ const menuItems = [
     label: "Dashboard",
     href: "/dashboard",
   },
+  {
+    id:3,
+    label:"Appointment",
+    href:"/appointment",
+  }
 ];
 
 function AppHeader() {

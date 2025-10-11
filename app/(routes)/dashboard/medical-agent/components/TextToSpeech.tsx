@@ -24,6 +24,7 @@ const TextToSpeech = forwardRef<TextToSpeechRef, TextToSpeechProps>(({
   onError
 }, ref) => {
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
+  const currentAudioUrlRef = useRef<string | null>(null);
   const [pendingText, setPendingText] = useState<string>("");
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const previousTextRef = useRef<string>("");
@@ -48,6 +49,12 @@ const TextToSpeech = forwardRef<TextToSpeechRef, TextToSpeechProps>(({
 
     return () => {
       stopSpeaking();
+
+      // Clean up any remaining audio URL
+      if (currentAudioUrlRef.current) {
+        URL.revokeObjectURL(currentAudioUrlRef.current);
+        currentAudioUrlRef.current = null;
+      }
 
       if (audioElementRef.current) {
         audioElementRef.current.removeEventListener('ended', handleAudioEnded);
@@ -94,7 +101,22 @@ const TextToSpeech = forwardRef<TextToSpeechRef, TextToSpeechProps>(({
   };
 
   const handleAudioError = (e: Event) => {
-    console.error("Audio playback error occurred", e);
+    const error = e as ErrorEvent;
+    console.error("Audio playback error occurred", {
+      error: error.error,
+      message: error.message,
+      filename: error.filename,
+      lineno: error.lineno,
+      colno: error.colno,
+      audioSrc: audioElementRef.current?.src
+    });
+    
+    // Clean up the audio URL on error
+    if (currentAudioUrlRef.current) {
+      URL.revokeObjectURL(currentAudioUrlRef.current);
+      currentAudioUrlRef.current = null;
+    }
+    
     setIsProcessing(false);
     onSpeakingEnd();
   };
@@ -103,6 +125,11 @@ const TextToSpeech = forwardRef<TextToSpeechRef, TextToSpeechProps>(({
   const stopSpeaking = () => {
     console.log("TextToSpeech: stopSpeaking called");
 
+    // Clean up the current audio URL
+    if (currentAudioUrlRef.current) {
+      URL.revokeObjectURL(currentAudioUrlRef.current);
+      currentAudioUrlRef.current = null;
+    }
 
     if (audioElementRef.current) {
       audioElementRef.current.pause();
@@ -158,6 +185,12 @@ const TextToSpeech = forwardRef<TextToSpeechRef, TextToSpeechProps>(({
         setLastApiError(null);
 
         const audioUrl = URL.createObjectURL(response.data);
+
+        // Clean up previous URL if it exists
+        if (currentAudioUrlRef.current) {
+          URL.revokeObjectURL(currentAudioUrlRef.current);
+        }
+        currentAudioUrlRef.current = audioUrl;
 
         if (audioElementRef.current) {
           audioElementRef.current.src = audioUrl;
